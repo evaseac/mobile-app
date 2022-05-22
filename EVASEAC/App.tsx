@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import NavProps from './interfaces/Navigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,21 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-type RootStackParamList = {
-
-  Pdp: undefined; //current screen
-
-  SignUp: undefined; // don't pass any props to it
-
-  Home: undefined;
-
-  // see: https://stackoverflow.com/questions/47924501/add-strong-typing-for-react-navigation-props
-};
-
-interface NavProps {
-  navigation: NativeStackNavigationProp<RootStackParamList, 'Pdp'>;
-}
 
 const LogInScreen = (props: NavProps) => {
   return (
