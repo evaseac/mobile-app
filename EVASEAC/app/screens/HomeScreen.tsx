@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 interface HomeScreenProps {
-    
+    navigation : any
 }
 
-export default function HomeScreen(props:HomeScreenProps) {
+const HomeScreen = (props:HomeScreenProps) => {
     return (
         <View style={styles.container}>
-            <Text>Sign Up</Text>
+            <Text>Home!</Text>
         </View>
     );
 }
@@ -20,3 +20,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
+
+
+export default HomeScreen;
