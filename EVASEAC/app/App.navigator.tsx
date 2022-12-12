@@ -6,6 +6,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 import HomeScreen from "./screens/HomeScreen";
 import SignUpScreen from "./screens/SignUpScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 const AppNavigator = () => (
     <NavigationContainer>
@@ -14,8 +15,9 @@ const AppNavigator = () => (
                 headerShown : false
             }} initialRouteName="login"
         >
-            <Screen name="login" component={SignUpScreen}></Screen>
+            <Screen name="signup" component={SignUpScreen}></Screen>
             <Screen name="home" component={HomeScreen}></Screen>
+            <Screen name="login" component={LoginScreen}></Screen>
         </Navigator>
     </NavigationContainer>
 );
