@@ -1,16 +1,19 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-interface Protocolo3Props {
+interface SitiosProps {
     navigation : any;
 }
 
-const Protocolo3Screen = (props:Protocolo3Props) => {
+const SitesScreen = (props:SitiosProps) => {
     const home = () => {
         props.navigation.navigate("home")
     }
+    const create = () => {
+        props.navigation.navigate("create-site")
+    }
     return (
         <View style={styles.container}>
-            <Text>Hello world!</Text>
+            <Button title="create" onPress={create}>Crear nuevo</Button>
         </View>
     );
 
@@ -26,4 +29,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Protocolo3Screen;
+export default SitesScreen;

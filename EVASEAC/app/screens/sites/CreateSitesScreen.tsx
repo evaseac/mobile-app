@@ -1,19 +1,17 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
 
-interface SitiosProps {
+import { StyleSheet, Text, View } from 'react-native';
+
+interface CreateSitiosProps {
     navigation : any;
 }
 
-const SitiosScreen = (props:SitiosProps) => {
+const CreateSitesScreen = (props:CreateSitiosProps) => {
     const home = () => {
         props.navigation.navigate("home")
     }
-    const create = () => {
-        props.navigation.navigate("create-site")
-    }
     return (
         <View style={styles.container}>
-            <Button title="create" onPress={create}>Crear nuevo</Button>
+            <Text>Hello world!</Text>
         </View>
     );
 
@@ -29,4 +27,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SitiosScreen;
+export default CreateSitesScreen;

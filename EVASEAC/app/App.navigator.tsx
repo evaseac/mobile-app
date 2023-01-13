@@ -7,13 +7,13 @@ const { Navigator, Screen } = createNativeStackNavigator();
 import HomeScreen from "./screens/HomeScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import LoginScreen from "./screens/LoginScreen";
-import Protocolo1Screen from "./screens/protocolo1/Protocolo1Screen";
-import Protocolo2MainScreen from "./screens/protocolo2/Protocolo2MainScreen";
-import Pt2CondicionesScreen from "./screens/protocolo2/Pt2CondicionesScreen";
-import SitiosScreen from "./screens/sitios/SitiosScreen";
-import CreateSitiosScreen from "./screens/sitios/CreateSitiosScreen";
-import Protocolo3Screen from "./screens/protocolo3/Protocolo3Screen";
-import Protocolo4Screen from "./screens/protocolo4/Protocolo4Screen";
+import Protocol1Screen from "./screens/protocol1/Protocol1Screen";
+import Protocol2MainScreen from "./screens/protocol2/Protocol2MainScreen";
+import Pt2ConditionsScreen from "./screens/protocol2/Pt2ConditionsScreen";
+import SitesScreen from "./screens/sites/SitesScreen";
+import CreateSitesScreen from "./screens/sites/CreateSitesScreen";
+import Protocol3Screen from "./screens/protocol3/Protocol3Screen";
+import Protocol4Screen from "./screens/protocol4/Protocol4Screen";
 
 const AppNavigator = () => (
     <NavigationContainer>
@@ -25,13 +25,13 @@ const AppNavigator = () => (
             <Screen name="signup" component={SignUpScreen}></Screen>
             <Screen name="home" component={HomeScreen}></Screen>
             <Screen name="login" component={LoginScreen}></Screen>
-            <Screen name="protocolo1" component={Protocolo1Screen}></Screen>
-            <Screen name="protocolo2" component={Protocolo2MainScreen}></Screen>
-            <Screen name="protocolo3" component={Protocolo3Screen}></Screen>
-            <Screen name="protocolo4" component={Protocolo4Screen}></Screen>
-            <Screen name="pt2-condiciones-climaticas" component={Pt2CondicionesScreen}></Screen>
-            <Screen name="sitios" component={SitiosScreen}></Screen>
-            <Screen name="create-site" component={CreateSitiosScreen}></Screen>
+            <Screen name="Protocol1" component={Protocol1Screen}></Screen>
+            <Screen name="Protocol2" component={Protocol2MainScreen}></Screen>
+            <Screen name="Protocol3" component={Protocol3Screen}></Screen>
+            <Screen name="Protocol4" component={Protocol4Screen}></Screen>
+            <Screen name="pt2-climate-conditions" component={Pt2ConditionsScreen}></Screen>
+            <Screen name="sitios" component={SitesScreen}></Screen>
+            <Screen name="create-site" component={CreateSitesScreen}></Screen>
         </Navigator>
     </NavigationContainer>
 );

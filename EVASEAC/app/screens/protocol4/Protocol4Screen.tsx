@@ -1,11 +1,10 @@
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-import { StyleSheet, Text, View } from 'react-native';
-
-interface CreateSitiosProps {
+interface Protocol4Props {
     navigation : any;
 }
 
-const CreateSitiosScreen = (props:CreateSitiosProps) => {
+const Protocol4Screen = (props:Protocol4Props) => {
     const home = () => {
         props.navigation.navigate("home")
     }
@@ -27,4 +26,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CreateSitiosScreen;
+export default Protocol4Screen;

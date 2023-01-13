@@ -1,18 +1,18 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
 
-interface Pt2CondicionesProps {
+interface Pt2ConditionsProps {
     navigation : any;
 }
 
-const Pt2CondicionesScreen = (props:Pt2CondicionesProps) => {
+const Pt2ConditionsScreen = (props:Pt2ConditionsProps) => {
     const home = () => {
         props.navigation.navigate("home")
     }
-    const condiciones_climaticas = () => {
-        props.navigation.navigate("pt2-condiciones-climaticas")
+    const climate_conditions = () => {
+        props.navigation.navigate("pt2-climate-conditions")
     }
-    const caracteristicas = () => {
-        props.navigation.navigate("pt2-caracteristicas-agua")
+    const characteristics = () => {
+        props.navigation.navigate("pt2-characteristics-water")
     }
     return (
         <View style={styles.container}>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default Pt2CondicionesScreen;
+export default Pt2ConditionsScreen;

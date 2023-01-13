@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 
-interface Protocolo1Props {
+interface Protocol1Props {
     navigation : any;
 }
 
-const Protocolo1Screen = (props:Protocolo1Props) => {
+const Protocol1Screen = (props:Protocol1Props) => {
     const home = () => {
         props.navigation.navigate("home")
     }
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default Protocolo1Screen;
+export default Protocol1Screen;
