@@ -27,7 +27,7 @@ const AppNavigator = () => (
             <Screen name="login" component={LoginScreen}></Screen>
             <Screen name="Protocol1" component={Protocol1Screen}></Screen>
             <Screen name="Protocol2" component={Protocol2MainScreen}></Screen>
-            <Screen name="Protocol3" component={Protocol3Screen}></Screen>
+            <Screen name="Protocol3" component={Protocol3Screen} options={{ headerShown:true, title: "Protocolo 3" }}></Screen>
             <Screen name="Protocol4" component={Protocol4Screen}></Screen>
             <Screen name="pt2-climate-conditions" component={Pt2ConditionsScreen}></Screen>
             <Screen name="sitios" component={SitesScreen}></Screen>
