@@ -14,6 +14,7 @@ import SitesScreen from "./screens/sites/SitesScreen";
 import CreateSitesScreen from "./screens/sites/CreateSitesScreen";
 import Protocol3Screen from "./screens/protocol3/Protocol3Screen";
 import Protocol4Screen from "./screens/protocol4/Protocol4Screen";
+import Pt3FormScreen from "./screens/protocol3/Pt3FormScreen";
 
 const AppNavigator = () => (
     <NavigationContainer>
@@ -30,6 +31,7 @@ const AppNavigator = () => (
             <Screen name="Protocol3" component={Protocol3Screen} options={{ headerShown:true, title: "Protocolo 3" }}></Screen>
             <Screen name="Protocol4" component={Protocol4Screen}></Screen>
             <Screen name="pt2-climate-conditions" component={Pt2ConditionsScreen}></Screen>
+            <Screen name="pt3-form" component={Pt3FormScreen} options={{ headerShown:true, title: "Protocolo 3" }}></Screen>
             <Screen name="sitios" component={SitesScreen}></Screen>
             <Screen name="create-site" component={CreateSitesScreen}></Screen>
         </Navigator>
