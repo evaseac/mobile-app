@@ -1,15 +1,13 @@
-import { TouchableOpacity, StyleSheet, Text, View, Image, TextInput, ImageBackground} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image, TextInput, ImageBackground, BackHandler } from 'react-native';
 import { StatusBar } from 'expo-status-bar'
 import { useFonts } from 'expo-font'
-import { useState } from 'react'
+import { useEffect } from 'react'
 
 interface LoginScreenProps {
     navigation : any;
 }
 
 const LoginScreen = (props : LoginScreenProps) => {
-    const [email, setEmail] = useState("");
-
     const [loaded] = useFonts({
         Helvetica : require("../../assets/fonts/Helvetica-Bold.ttf")
     })
@@ -21,6 +19,19 @@ const LoginScreen = (props : LoginScreenProps) => {
     const signup = () => {
         props.navigation.navigate("signup")
     }
+
+    useEffect(() => {
+        const backAction = () => {
+            BackHandler.exitApp();
+            return true;
+        }
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            backAction,
+        );
+
+        return () => backHandler.remove();
+    }, []);
 
     if(!loaded) {
         return null
@@ -38,10 +49,9 @@ const LoginScreen = (props : LoginScreenProps) => {
                         style={[styles.TextInput]}
                         placeholder="Ingrese su correo"
                         placeholderTextColor="#808080"
-                        onChange={(email) => setEmail(email)}
                     />
                 </View>
-                
+
                 <TouchableOpacity style={styles.loginBtn} onPress={home}>
                     <Text style={styles.textButton}>Continuar</Text>
                 </TouchableOpacity>
