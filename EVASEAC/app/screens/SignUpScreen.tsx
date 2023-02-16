@@ -1,20 +1,14 @@
-import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import { useFonts } from 'expo-font'
-import { useState } from 'react'
 
 interface SignUpScreenProps {
     navigation : any;
 }
 
 const SignUpScreen = (props:SignUpScreenProps) => {
-    const home = () => {
-        props.navigation.navigate("home")
+    const login = () => {
+        props.navigation.navigate("login")
     }
-
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [number, setNumber] = useState("")
 
     const [loaded] = useFonts({
         Helvetica : require("../../assets/fonts/Helvetica-Bold.ttf")
@@ -26,46 +20,44 @@ const SignUpScreen = (props:SignUpScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.title}>
-                <Text style={styles.titleText}>Registro</Text>
-            </View>
-            <Text> Nombre(s) </Text>
-            <View style={styles.inputView} >
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder = "Ingrese su(s) nombre(s)"
-                    placeholderTextColor = "#808080"
-                    onChange={(name) => setName(name)}
-                />
-            </View>
-            <Text> Apellido(s) </Text>
-            <View style={styles.inputView} >
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder = "Ingrese su(s) apellido(s)"
-                    placeholderTextColor = "#808080"
-                    onChange={(surname) => setSurname(surname)}
-                />
-            </View>
-            <Text> Correo electrónico </Text>
-            <View style={styles.inputView} >
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder = "Ingrese su correo"
-                    placeholderTextColor = "#808080"
-                    onChange={(email) => setEmail(email)}
-                />
-            </View>
-                
-            <Text> Número </Text>
-            <View style={styles.inputView} >
-                <TextInput
-                    style={styles.TextInput}
-                    placeholder = "Ingrese su número"
-                    placeholderTextColor = "#808080"
-                    keyboardType='numeric'
-                    onChange={(email) => setEmail(email)}
-                />
+            <View style={styles.form}>
+                <Text> Nombre(s) </Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        style={styles.TextInput}
+                        placeholder = "Ingrese su(s) nombre(s)"
+                        placeholderTextColor = "#808080"
+                    />
+                </View>
+                <Text> Apellido(s) </Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        style={styles.TextInput}
+                        placeholder = "Ingrese su(s) apellido(s)"
+                        placeholderTextColor = "#808080"
+                    />
+                </View>
+                <Text> Correo electrónico </Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        style={styles.TextInput}
+                        placeholder = "Ingrese su correo"
+                        placeholderTextColor = "#808080"
+                    />
+                </View>
+
+                <Text> Número </Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        style={styles.TextInput}
+                        placeholder = "Ingrese su número"
+                        placeholderTextColor = "#808080"
+                        keyboardType='numeric'
+                    />
+                </View>
+                <TouchableOpacity style={styles.loginBtn} onPress={login}>
+                    <Text style={styles.textButton}>Resgistrarse</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -75,8 +67,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
 
     TextInput: {
@@ -111,6 +101,28 @@ const styles = StyleSheet.create({
         height: 45,
         marginBottom: 20,
         alignItems: "flex-start",
+    },
+
+    form: {
+        marginTop: 20,
+        flex: 1,
+        alignItems: 'center',
+        width: "100%"
+    },
+
+    loginBtn: {
+        width: "40%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 40,
+        backgroundColor: "#275DAD",
+    },
+
+    textButton: {
+        color: "#FFFF",
+        fontSize: 20,
     },
 });
 
