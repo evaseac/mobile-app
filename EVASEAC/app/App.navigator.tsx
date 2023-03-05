@@ -15,17 +15,17 @@ import CreateSitesScreen from "./screens/sites/CreateSitesScreen";
 import Protocol3Screen from "./screens/protocol3/Protocol3Screen";
 import Protocol4Screen from "./screens/protocol4/Protocol4Screen";
 import Pt3FormScreen from "./screens/protocol3/Pt3FormScreen";
+import SplashScreen from "./screens/SplashScreen";
 
 const AppNavigator = () => (
     <NavigationContainer>
-        <Navigator 
-            screenOptions={{
-                headerShown : false
-            }} initialRouteName="login"
+        <Navigator
+            initialRouteName="splash"
         >
-            <Screen name="signup" component={SignUpScreen}></Screen>
+            <Screen name="splash" component={SplashScreen} options={{ headerShown : false }}></Screen>
+            <Screen name="login" component={LoginScreen} options={{ headerShown : false }}></Screen>
             <Screen name="home" component={HomeScreen}></Screen>
-            <Screen name="login" component={LoginScreen}></Screen>
+            <Screen name="signup" component={SignUpScreen} options={{ title: 'Registro' }}></Screen>
             <Screen name="Protocol1" component={Protocol1Screen}></Screen>
             <Screen name="Protocol2" component={Protocol2MainScreen}></Screen>
             <Screen name="Protocol3" component={Protocol3Screen} options={{ headerShown:true, title: "Protocolo 3" }}></Screen>
