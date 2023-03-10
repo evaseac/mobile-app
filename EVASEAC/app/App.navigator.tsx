@@ -22,9 +22,9 @@ const AppNavigator = () => (
         <Navigator
             initialRouteName="splash"
         >
-            <Screen name="splash" component={SplashScreen} options={{ headerShown : false }}></Screen>
-            <Screen name="login" component={LoginScreen} options={{ headerShown : false }}></Screen>
-            <Screen name="home" component={HomeScreen}></Screen>
+            <Screen name="splash" component={SplashScreen} options={{ headerShown: false }}></Screen>
+            <Screen name="login" component={LoginScreen} options={{ headerShown: false }}></Screen>
+            <Screen name="home" component={HomeScreen} options={{ title: 'Inicio' }}></Screen>
             <Screen name="signup" component={SignUpScreen} options={{ title: 'Registro' }}></Screen>
             <Screen name="Protocol1" component={Protocol1Screen}></Screen>
             <Screen name="Protocol2" component={Protocol2MainScreen}></Screen>
