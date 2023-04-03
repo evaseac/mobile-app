@@ -49,7 +49,7 @@ const HomeScreen = (props: HomeScreenProps) => {
           <View style={{alignItems: 'center'}}>
             <Pressable
               style={styles.circular_button}
-              onPress={() => navigateTo('home')}>
+              onPress={() => navigateTo('sitios')}>
               <FontAwesomeIcon name="map" size={30} color="#ffff" />
             </Pressable>
             <Text style={{fontSize: 12}}> Nuevo sitio </Text>
