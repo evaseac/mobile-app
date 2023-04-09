@@ -23,6 +23,7 @@ export default function App() {
           name='Home'
           component={HomeScreen}
         />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
