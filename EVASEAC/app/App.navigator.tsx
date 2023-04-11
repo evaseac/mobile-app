@@ -50,7 +50,11 @@ const AppNavigator = () => (
         component={Pt3FormScreen}
         options={{headerShown: true, title: 'Protocolo 3'}}
       />
-      <Screen name="sitios" component={SitesScreen} options={{title: 'Sitios'}} />
+      <Screen
+        name="sitios"
+        component={SitesScreen}
+        options={{title: 'Sitios'}}
+      />
       <Screen name="create-site" component={CreateSitesScreen} />
     </Navigator>
   </NavigationContainer>
