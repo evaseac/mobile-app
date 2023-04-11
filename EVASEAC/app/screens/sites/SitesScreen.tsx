@@ -1,5 +1,6 @@
-import { Button, StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import MapView from 'react-native-maps';
+import Button from '../../components/Button';
 
 interface SitiosProps {
   navigation: any;
@@ -39,12 +40,8 @@ const SitesScreen = (props:SitiosProps) => {
         </View>
       </View>
       <View style={styles.buttonsContainer}>
-        <Pressable style={styles.primaryButton} onPress={create}>
-          <Text style={styles.primaryButtonText}>CREAR NUEVO</Text>
-        </Pressable>
-        <Pressable style={styles.primaryButton} onPress={create}>
-          <Text style={styles.primaryButtonText}>EDITAR</Text>
-        </Pressable>
+        <Button onClick={create} title="CREAR NUEVO" style={styles.button} />
+        <Button onClick={create} title="EDITAR" style={styles.button} />
       </View>
       <View style={styles.cardsContainers}>
         {card('Punto de medición', cardText)}
@@ -59,20 +56,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-    },
-    primaryButtonText: {
-      color: 'white',
-      fontFamily: 'Helvetica',
-      fontWeight: 'bold',
-    },
-    primaryButton: {
-      backgroundColor: '#275DAD',
-      padding: 10,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 10,
-      width: 120,
-      height: 40,
     },
     mapContainer: {
       flex: 4,
@@ -107,6 +90,10 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-evenly',
       alignItems: 'center',
+    },
+    button: {
+      maxWidth: 120,
+      maxHeight: 40,
     },
     cardsContainers: {
       flex: 6,
