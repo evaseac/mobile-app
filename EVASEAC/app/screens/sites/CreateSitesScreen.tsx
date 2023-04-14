@@ -1,4 +1,13 @@
-import React, {StyleSheet, Text, View, TextInput} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
+import {useState} from 'react';
+import React, {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  ScrollView,
+} from 'react-native';
 import MapView from 'react-native-maps';
 import Button from '../../components/Button';
 
@@ -10,11 +19,36 @@ const CreateSitesScreen = () => {
     longitudeDelta: 0.005,
   };
 
-  const verticalInput = (label: string, placeholder: string) => {
+  const [formSectionShow, setFormSectionShow] = useState([true, true]);
+
+  const toggleFormSection = (index: number) => {
+    const prevVal = [...formSectionShow];
+    prevVal[index] = !prevVal[index];
+    setFormSectionShow(prevVal);
+  };
+
+  const getCollapseIcon = (index: number) => {
+    return formSectionShow[index] ? (
+      <Ionicons name="chevron-up" />
+    ) : (
+      <Ionicons name="caret-down" />
+    );
+  };
+
+  const verticalInput = (
+    label: string,
+    placeholder: string,
+    value: string = '',
+    flex: number = 1,
+  ) => {
     return (
-      <View>
+      <View style={[styles.inputFormContainer, {flex}]}>
         <Text>{label}</Text>
-        <TextInput style={styles.input} placeholder={placeholder} />
+        <TextInput
+          style={styles.input}
+          placeholder={placeholder}
+          value={value}
+        />
       </View>
     );
   };
@@ -28,57 +62,89 @@ const CreateSitesScreen = () => {
       </View>
 
       <View style={styles.formContainer}>
-        <View
-          style={[
-            styles.formFirstSectionContainer,
-            styles.formSectionContainer,
-          ]}>
-          <Text style={styles.formHeader}>Temporada</Text>
-          <View style={[styles.formBody, styles.formBodyHorizontal]}>
-            <Text>Escoja la fecha del sitio</Text>
-            <TextInput style={styles.input} placeholder="dd/mm/yyyy" />
-          </View>
-        </View>
-
-        <View
-          style={[
-            styles.formSecondSectionContainer,
-            styles.formSectionContainer,
-          ]}>
-          <Text style={styles.formHeader}>Datos de locación automáticos</Text>
-          <View style={[styles.formBody, styles.formBodyHorizontal]}>
-            {verticalInput('Longitud', '')}
-            {verticalInput('Latitud', '')}
-            {verticalInput('Altitud (m)', '')}
-          </View>
-        </View>
-
-        <View
-          style={[
-            styles.formThirdSectionContainer,
-            styles.formSectionContainer,
-          ]}>
-          <Text style={styles.formHeader}>
-            Ingresar datos de locación manualmente
-          </Text>
-          <View>
-            <Text style={styles.formHeader}>Datos generales</Text>
-            <View style={styles.formBody}>
-              <View style={styles.formBodyHorizontal}>
-                {verticalInput('Nombre (Cuerpo de agua)', '')}
-                {verticalInput('Id Estación', '')}
-              </View>
-              <View style={styles.formBodyHorizontal}>
-                {verticalInput('Estado', '')}
-                {verticalInput('Municipio', '')}
-              </View>
-              <View style={styles.formBodyHorizontal}>
-                {verticalInput('Cuenca', '')}
-                {verticalInput('Localidad', '')}
-              </View>
+        <ScrollView>
+          <View
+            style={[
+              styles.formFirstSectionContainer,
+              styles.formSectionContainer,
+            ]}>
+            <Text style={styles.formHeader}>Temporada</Text>
+            <View style={[styles.formBody, styles.formBodyHorizontal]}>
+              <Text>Escoja la fecha del sitio</Text>
+              <TextInput style={styles.input} placeholder="dd/mm/yyyy" />
             </View>
           </View>
-        </View>
+
+          <View
+            style={[
+              styles.formSecondSectionContainer,
+              styles.formSectionContainer,
+            ]}>
+            <Pressable
+              style={styles.formCallapsibleHeader}
+              onPress={() => toggleFormSection(0)}>
+              <Text style={styles.formHeader}>
+                Datos de locación automáticos
+              </Text>
+              {getCollapseIcon(0)}
+            </Pressable>
+            <View style={styles.formSeparator} />
+            {formSectionShow[0] ? (
+              <View style={[styles.formBody, styles.formBodyHorizontal]}>
+                {verticalInput(
+                  'Longitud',
+                  '',
+                  initialRegion.longitude.toString(),
+                )}
+                {verticalInput(
+                  'Latitud',
+                  '',
+                  initialRegion.latitude.toString(),
+                )}
+                {verticalInput('Altitud (m)', '', '80')}
+              </View>
+            ) : (
+              <></>
+            )}
+          </View>
+
+          <View
+            style={[
+              styles.formThirdSectionContainer,
+              styles.formSectionContainer,
+            ]}>
+            <Pressable
+              style={styles.formCallapsibleHeader}
+              onPress={() => toggleFormSection(1)}>
+              <Text style={styles.formHeader}>
+                Ingresar datos de locación manualmente
+              </Text>
+              {getCollapseIcon(1)}
+            </Pressable>
+            <View style={styles.formSeparator} />
+            {formSectionShow[1] ? (
+              <View>
+                <Text style={styles.formHeader}>Datos generales</Text>
+                <View style={styles.formBody}>
+                  <View style={styles.formBodyHorizontal}>
+                    {verticalInput('Nombre (Cuerpo de agua)', '', 3)}
+                    {verticalInput('Id Estación', '', 1)}
+                  </View>
+                  <View style={styles.formBodyHorizontal}>
+                    {verticalInput('Estado', '')}
+                    {verticalInput('Municipio', '')}
+                  </View>
+                  <View style={styles.formBodyHorizontal}>
+                    {verticalInput('Cuenca', '')}
+                    {verticalInput('Localidad', '')}
+                  </View>
+                </View>
+              </View>
+            ) : (
+              <></>
+            )}
+          </View>
+        </ScrollView>
       </View>
 
       <View style={styles.buttonContainer}>
@@ -119,25 +185,26 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   formFirstSectionContainer: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: 'yellow',
   },
   formSecondSectionContainer: {
-    flex: 2,
+    // flex: 2,
     // backgroundColor: 'brown',
   },
   formThirdSectionContainer: {
-    flex: 4,
+    // flex: 4,
     // backgroundColor: 'gray',
   },
   formBody: {
     backgroundColor: '#F6F6F6',
     borderRadius: 10,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 10,
   },
   formBodyHorizontal: {
     // flex: 1,
+    // display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -146,8 +213,23 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#999999',
   },
+  inputFormContainer: {
+    // flex: 1,
+    paddingHorizontal: 5,
+  },
   formHeader: {
     fontWeight: 'bold',
+  },
+  formCallapsibleHeader: {
+    // flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // backgroundColor: 'red',
+  },
+  formSeparator: {
+    borderColor: '#999999',
+    borderTopWidth: 1,
+    // marginTop: 1,
   },
   buttonContainer: {
     flex: 1,
