@@ -10,6 +10,7 @@ import React, {
 } from 'react-native';
 import MapView from 'react-native-maps';
 import Button from '../../components/Button';
+import VerticalTextInput from '../../components/VerticalTextInput';
 
 const CreateSitesScreen = () => {
   const initialRegion = {
@@ -19,6 +20,11 @@ const CreateSitesScreen = () => {
     longitudeDelta: 0.005,
   };
 
+  const [latitude, setLatitude] = useState(initialRegion.latitude.toString());
+  const [longitude, setLongitude] = useState(
+    initialRegion.longitude.toString(),
+  );
+  const [altitude, setAltitude] = useState('80');
   const [formSectionShow, setFormSectionShow] = useState([true, true]);
 
   const toggleFormSection = (index: number) => {
@@ -35,24 +41,6 @@ const CreateSitesScreen = () => {
     );
   };
 
-  const verticalInput = (
-    label: string,
-    placeholder: string,
-    value: string = '',
-    flex: number = 1,
-  ) => {
-    return (
-      <View style={[styles.inputFormContainer, {flex}]}>
-        <Text>{label}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder={placeholder}
-          value={value}
-        />
-      </View>
-    );
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.mapContainer}>
@@ -63,11 +51,7 @@ const CreateSitesScreen = () => {
 
       <View style={styles.formContainer}>
         <ScrollView>
-          <View
-            style={[
-              styles.formFirstSectionContainer,
-              styles.formSectionContainer,
-            ]}>
+          <View style={styles.formSectionContainer}>
             <Text style={styles.formHeader}>Temporada</Text>
             <View style={[styles.formBody, styles.formBodyHorizontal]}>
               <Text>Escoja la fecha del sitio</Text>
@@ -75,11 +59,7 @@ const CreateSitesScreen = () => {
             </View>
           </View>
 
-          <View
-            style={[
-              styles.formSecondSectionContainer,
-              styles.formSectionContainer,
-            ]}>
+          <View style={styles.formSectionContainer}>
             <Pressable
               style={styles.formCallapsibleHeader}
               onPress={() => toggleFormSection(0)}>
@@ -91,28 +71,28 @@ const CreateSitesScreen = () => {
             <View style={styles.formSeparator} />
             {formSectionShow[0] ? (
               <View style={[styles.formBody, styles.formBodyHorizontal]}>
-                {verticalInput(
-                  'Longitud',
-                  '',
-                  initialRegion.longitude.toString(),
-                )}
-                {verticalInput(
-                  'Latitud',
-                  '',
-                  initialRegion.latitude.toString(),
-                )}
-                {verticalInput('Altitud (m)', '', '80')}
+                <VerticalTextInput
+                  label="Longitud"
+                  value={longitude}
+                  onChangeText={setLongitude}
+                />
+                <VerticalTextInput
+                  label="Latitud"
+                  value={latitude}
+                  onChangeText={setLatitude}
+                />
+                <VerticalTextInput
+                  label="Altitud (m)"
+                  value={altitude}
+                  onChangeText={setAltitude}
+                />
               </View>
             ) : (
               <></>
             )}
           </View>
 
-          <View
-            style={[
-              styles.formThirdSectionContainer,
-              styles.formSectionContainer,
-            ]}>
+          <View style={styles.formSectionContainer}>
             <Pressable
               style={styles.formCallapsibleHeader}
               onPress={() => toggleFormSection(1)}>
@@ -127,16 +107,19 @@ const CreateSitesScreen = () => {
                 <Text style={styles.formHeader}>Datos generales</Text>
                 <View style={styles.formBody}>
                   <View style={styles.formBodyHorizontal}>
-                    {verticalInput('Nombre (Cuerpo de agua)', '', 3)}
-                    {verticalInput('Id Estación', '', 1)}
+                    <VerticalTextInput
+                      label="Nombre (Cuerpo de agua)"
+                      style={styles.flex3}
+                    />
+                    <VerticalTextInput label="Id Estación" />
                   </View>
                   <View style={styles.formBodyHorizontal}>
-                    {verticalInput('Estado', '')}
-                    {verticalInput('Municipio', '')}
+                    <VerticalTextInput label="Estado" />
+                    <VerticalTextInput label="Municipio" />
                   </View>
                   <View style={styles.formBodyHorizontal}>
-                    {verticalInput('Cuenca', '')}
-                    {verticalInput('Localidad', '')}
+                    <VerticalTextInput label="Cuenca" />
+                    <VerticalTextInput label="Localidad" />
                   </View>
                 </View>
               </View>
@@ -155,9 +138,6 @@ const CreateSitesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  debug: {
-    backgroundColor: 'red',
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -166,7 +146,6 @@ const styles = StyleSheet.create({
     flex: 3,
     paddingVertical: 30,
     paddingHorizontal: 30,
-    // backgroundColor: 'red',
   },
   mapViewMask: {
     flex: 1,
@@ -178,23 +157,10 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     flex: 7,
-    // backgroundColor: 'blue',
   },
   formSectionContainer: {
     paddingHorizontal: 30,
     paddingVertical: 10,
-  },
-  formFirstSectionContainer: {
-    // flex: 1,
-    // backgroundColor: 'yellow',
-  },
-  formSecondSectionContainer: {
-    // flex: 2,
-    // backgroundColor: 'brown',
-  },
-  formThirdSectionContainer: {
-    // flex: 4,
-    // backgroundColor: 'gray',
   },
   formBody: {
     backgroundColor: '#F6F6F6',
@@ -203,8 +169,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   formBodyHorizontal: {
-    // flex: 1,
-    // display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -214,31 +178,29 @@ const styles = StyleSheet.create({
     borderColor: '#999999',
   },
   inputFormContainer: {
-    // flex: 1,
     paddingHorizontal: 5,
   },
   formHeader: {
     fontWeight: 'bold',
   },
   formCallapsibleHeader: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // backgroundColor: 'red',
   },
   formSeparator: {
     borderColor: '#999999',
     borderTopWidth: 1,
-    // marginTop: 1,
   },
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'green',
   },
   button: {
     maxHeight: 40,
+  },
+  flex3: {
+    flex: 3,
   },
 });
 
