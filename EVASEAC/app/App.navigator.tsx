@@ -55,7 +55,11 @@ const AppNavigator = () => (
         component={SitesScreen}
         options={{title: 'Sitios'}}
       />
-      <Screen name="create-site" component={CreateSitesScreen} />
+      <Screen
+        name="create-site"
+        component={CreateSitesScreen}
+        options={{title: 'Crear Sitios'}}
+      />
     </Navigator>
   </NavigationContainer>
 );
